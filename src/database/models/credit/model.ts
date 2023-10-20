@@ -1,8 +1,6 @@
 import {model, Schema, SchemaTypes} from 'mongoose';
 import { ICredit } from './types';
 import {Status} from "../../../types/common";
-import { creditModel } from '../creditModel';
-
 const creditSchema = new Schema<Partial<ICredit>>(
     {
         client_deposit:{

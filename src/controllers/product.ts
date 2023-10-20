@@ -3,13 +3,17 @@ import { ProductModel } from '../database/models/product'
 //Method GET
 //get all products
 export const getAllProducts = async (req: Request, res: Response) => {
-  const data = ProductModel.find()
+  const data = await ProductModel.find() 
+  console.log(data);
+  
   res.status(200).json({ status: '200ok', data })
 }
 //Method GET
 //get one product
 export const getOneProduct = async (req: Request, res: Response) => {
   const { id } = req.params
+  console.log({id});
+  
   const data = await ProductModel.find({ _id: id })
   res.status(200).json({ status: '200ok', data })
 }
@@ -42,7 +46,7 @@ export const addProduct = async (req: Request, res: Response) => {
 //get one product
 export const updateProduct = async (req: Request, res: Response) => {
     const { id } = req.params
-    const data = await ProductModel.findOneAndUpdate({ _id: id })
+    const data = await ProductModel.findByIdAndUpdate({ _id: id })
     res.status(200).json({ status: '200ok', data })
   }
 //Method DELETE

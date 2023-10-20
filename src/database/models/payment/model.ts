@@ -19,7 +19,7 @@ const paymentSchema = new Schema<Partial<IPayment>>(
         credit_id:{
             type:[SchemaTypes.ObjectId],
             ref:"Credit"
-        }
+        },
     }
 )
 

@@ -1,12 +1,17 @@
-import { Router } from 'express'
-import { Client } from '../controllers'
+import { Router } from 'express';
+import { Client } from '../controllers';
+import {validate,validateIdParam} from "../middlewares/validate";
+import {
+    createClientValidationSchema,
+    updateClientValidationSchema
+} from "../validations/schemas/client";
 
 const clientRouter = Router()
 
 clientRouter.get('/clients', Client.getAllClients)
-clientRouter.get('/clients/:id', Client.getOneClient)
-clientRouter.post('/clients', Client.addNewClient)
+clientRouter.get('/clients/:id', validateIdParam,Client.getOneClient)
+clientRouter.post('/clients',validate(createClientValidationSchema), Client.addNewClient)
 clientRouter.delete('/clients/:id', Client.deleteOneClient)
-clientRouter.put('/clients/:id', Client.updateOneClient)
+clientRouter.put('/clients/:id',validateIdParam,validateIdParam, validate(updateClientValidationSchema), Client.updateOneClient)
 
 export { clientRouter }
