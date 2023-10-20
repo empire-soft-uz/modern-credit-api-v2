@@ -6,12 +6,12 @@ import {
     updateClientValidationSchema
 } from "../validations/schemas/client";
 
-const clientRouter = Router()
+const clientRouter = Router();
 
-clientRouter.get('/clients', Client.getAllClients)
-clientRouter.get('/clients/:id', validateIdParam,Client.getOneClient)
-clientRouter.post('/clients',validate(createClientValidationSchema), Client.addNewClient)
-clientRouter.delete('/clients/:id', Client.deleteOneClient)
-clientRouter.put('/clients/:id',validateIdParam,validateIdParam, validate(updateClientValidationSchema), Client.updateOneClient)
+clientRouter.get('/clients', Client.getAllClients);
+clientRouter.get('/clients/:id', validateIdParam,Client.getOneClient);
+clientRouter.post('/clients',validate(createClientValidationSchema), Client.addNewClient);
+clientRouter.delete('/clients/:id',validateIdParam, Client.deleteOneClient);
+clientRouter.put('/clients/:id',validateIdParam, validate(updateClientValidationSchema), Client.updateOneClient);
 
-export { clientRouter }
+export { clientRouter };

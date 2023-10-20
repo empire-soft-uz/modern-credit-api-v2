@@ -12,9 +12,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
 //get one product
 export const getOneProduct = async (req: Request, res: Response) => {
   const { id } = req.params
-  console.log({id});
-  
-  const data = await ProductModel.find({ _id: id })
+  const data = await ProductModel.findById({ _id: id })
   res.status(200).json({ status: '200ok', data })
 }
 //Method POST
@@ -29,7 +27,7 @@ export const addProduct = async (req: Request, res: Response) => {
     iCloudPassword,
     description
   } = req.body
-
+try{
   const newProduct = new ProductModel({
     name,
    price,
@@ -42,17 +40,41 @@ export const addProduct = async (req: Request, res: Response) => {
   await newProduct.save()
   res.status(201).json({ status: '201 ok', data: newProduct})
 }
+catch(error){
+  res.json({msg:error});
+}
+}
 //Method PUT
 //get one product
 export const updateProduct = async (req: Request, res: Response) => {
-    const { id } = req.params
-    const data = await ProductModel.findByIdAndUpdate({ _id: id })
-    res.status(200).json({ status: '200ok', data })
+    const { id } = req.params;
+    const {
+      name,
+      price,
+      imageUrl,
+      imei,
+       iCloudLogin,
+       iCloudPassword,
+       description} = req.body;
+      try{
+    const data = await ProductModel.findOneAndUpdate({ _id: id },{
+      name,
+      price,
+      imageUrl,
+      imei,
+       iCloudLogin,
+       iCloudPassword,
+       description
+    });
+    res.status(200).json({ status: '200ok', msg:"Product updated successfully" });
   }
+  catch(error){
+    res.json({msg:error});
+  }}
 //Method DELETE
 //delete product
 export const deleteProduct = async (req: Request, res: Response) => {
     const { id } = req.params
-    const data = await ProductModel.findOneAndDelete({ _id: id })
+    const data = await ProductModel.findByIdAndDelete({ _id: id })
     res.status(200).json({ status: '200ok', data })
   }
