@@ -10,7 +10,7 @@ export const getAllClients = async (req: Request, res: Response) => {
 //get one client
 export const getOneClient = async (req: Request, res: Response) => {
   const { id } = req.params
-  const data = await ClientModel.findById({_id:id})
+  const data = await ClientModel.findById({_id: id})
   res.status(200).json({ status: '200ok', data })
 }
 //Method POST
@@ -38,7 +38,7 @@ export const addNewClient = async (req: Request, res: Response) => {
 export const deleteOneClient = async (req: Request, res: Response) => {
     const {id} = req.params
   try{
-    const deleteClient = ClientModel.findOneAndDelete({_id:id})
+    const deleteClient = await ClientModel.findByIdAndDelete({_id:id})
     res.status(200).json({ status: '200ok', msg:"Client deleted succesfully" })
   }catch(error){
     res.json({msg:error})
@@ -50,7 +50,7 @@ export const updateOneClient = async (req: Request, res: Response) => {
   const {id} = req.params;
   const {name,phone,address} = req.body;
   try{
-  const updatedUser = ClientModel.findOneAndUpdate({_id:id},     {
+  const updatedUser = await ClientModel.findOneAndUpdate({_id:id},     {
     name,
     phone,
     address,

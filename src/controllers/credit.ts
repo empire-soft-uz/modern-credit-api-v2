@@ -45,7 +45,7 @@ export const addNewCredit = async (req: Request, res: Response) => {
 export const deleteOneCredit = async (req: Request, res: Response) => {
   const { id } = req.params
   try {
-    const deleteCredit = CreditModel.findOneAndDelete({_id:id})
+    const deleteCredit = await CreditModel.findOneAndDelete({_id:id})
     res.status(200).json({ status: '200ok', msg: "Credit deleted succesfully" })
   } catch (error) {
     res.status(400).json({ msg: error });
@@ -63,7 +63,7 @@ export const updateOneCredit = async (req: Request, res: Response) => {
     percent
  } = req.body
   try {
-    const updatedCredit = CreditModel.findOneAndUpdate({_id:id}, {
+    const updatedCredit = await CreditModel.findOneAndUpdate({_id:id}, {
         product_id,
         client_id,
         client_deposit,

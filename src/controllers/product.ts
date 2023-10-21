@@ -74,7 +74,11 @@ export const updateProduct = async (req: Request, res: Response) => {
 //Method DELETE
 //delete product
 export const deleteProduct = async (req: Request, res: Response) => {
-    const { id } = req.params
-    const data = await ProductModel.findByIdAndDelete({ _id: id })
-    res.status(200).json({ status: '200ok', data })
-  }
+    const { id } = req.params;
+    try{
+    const data = await ProductModel.findByIdAndDelete({ _id: id });
+    res.status(200).json({ status: '200ok', data });
+    }catch(error){
+      res.json({msg:error});
+    }
+  };

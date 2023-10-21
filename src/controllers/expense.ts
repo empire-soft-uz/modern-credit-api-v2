@@ -42,7 +42,7 @@ export const addNewExpense = async (req: Request, res: Response) => {
 export const deleteExpense = async (req: Request, res: Response) => {
   const { id } = req.params
   try {
-    const deleteExpense = ExpenseModel.findByIdAndDelete({_id:id})
+    const deleteExpense = await ExpenseModel.findByIdAndDelete({_id:id})
     res.status(200).json({ status: '200ok', msg: "Expense deleted successfully" })
   } catch (error) {
     res.status(400).json({ msg: error })
@@ -52,7 +52,7 @@ export const updateExpense = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { amount, description } = req.body;
   try {
-    const updateExpense = ExpenseModel.findOneAndUpdate({_id:id}, {
+    const updateExpense = await ExpenseModel.findOneAndUpdate({_id:id}, {
       amount: amount,
       description: description
     })

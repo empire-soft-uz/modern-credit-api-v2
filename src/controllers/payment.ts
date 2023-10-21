@@ -38,7 +38,7 @@ export const addNewPayment = async (req: Request, res: Response) => {
 export const deleteOnePayment = async (req: Request, res: Response) => {
   const { id } = req.params
   try {
-    const deletePayment = PaymentModel.findByIdAndDelete({_id:id})
+    const deletePayment = await PaymentModel.findByIdAndDelete({_id:id})
     res.status(200).json({ status: '200ok', msg: "Payment deleted successfully!" })
   } catch (error) {
     res.status(400).json({ msg: error });
@@ -50,7 +50,7 @@ export const updateOnePayment = async (req: Request, res: Response) => {
   const { id } = req.params
   const { credit_id, paid_amount, index } = req.body
   try {
-    const updatedPayment = PaymentModel.findOneAndUpdate({_id:id}, {
+    const updatedPayment = await PaymentModel.findOneAndUpdate({_id:id}, {
       credit_id,
       paid_amount,
       index
