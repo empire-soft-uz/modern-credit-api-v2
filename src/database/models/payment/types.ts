@@ -1,9 +1,7 @@
-import {Document, ObjectId} from 'mongoose';
+import {Document} from 'mongoose';
 import { CreditDocument } from '../credit';
 
 export interface IPayment {
-    _id: ObjectId | string;
-    index: string;
     paid_amount:number;
     due_date:Date;
     credit_id:CreditDocument;

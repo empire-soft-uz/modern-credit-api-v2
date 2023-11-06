@@ -3,10 +3,6 @@ import { IPayment } from './types';
 
 const paymentSchema = new Schema<Partial<IPayment>>(
     {
-        index:{
-            type:String,
-            required:true,
-        },
         paid_amount:{
             type:Number,
             required:true

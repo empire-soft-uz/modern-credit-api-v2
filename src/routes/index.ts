@@ -1,7 +1,5 @@
 import { Router } from 'express'
 import { authRouter } from './authRoutes'
-import { clientRouter } from './clientRoutes'
-import { productRouter } from './productRoutes'
 import { creditRouter } from './creditRoutes'
 import { paymentRouter } from './paymentRoutes'
 import {expenseRouter} from './expenseRoutes'
@@ -9,10 +7,6 @@ import {expenseRouter} from './expenseRoutes'
 const router = Router();
 //api for Auth
 router.use('/api', authRouter);
-//api for Clients
-router.use('/api', clientRouter);
-// api for Products
-router.use('/api', productRouter);
 //api for clients
 router.use('/api', creditRouter);
 //api for payments

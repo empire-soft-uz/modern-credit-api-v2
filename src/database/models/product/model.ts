@@ -3,7 +3,7 @@ import { IProduct } from './types';
 
 const productSchema = new Schema<Partial<IProduct>>(
     {
-        name:{
+        product:{
             type:String,
             required:true,
         },

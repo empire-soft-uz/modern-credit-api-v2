@@ -18,8 +18,20 @@ export const getOneCredit = async (req: Request, res: Response) => {
 //Add a new credit
 export const addNewCredit = async (req: Request, res: Response) => {
   const {
-    product_id,
-      client_id,
+    client:{
+      name,
+      phone,
+      address
+    },
+    product:{
+      product,
+      price,
+      imageUrl,
+      imei,
+       iCloudLogin,
+       iCloudPassword,
+       description
+    },
       client_deposit,
       deposit_amount,
       period,
@@ -27,8 +39,20 @@ export const addNewCredit = async (req: Request, res: Response) => {
   } = req.body
   try {
     const newCredit = new CreditModel({
-      product_id,
-      client_id,
+      client:{
+        name,
+        phone,
+        address
+      },
+      product:{
+        product,
+        price,
+        imageUrl,
+        imei,
+         iCloudLogin,
+         iCloudPassword,
+         description
+      },
       client_deposit,
       deposit_amount,
       period,
