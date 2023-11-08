@@ -67,10 +67,11 @@ export const addNewCredit = async (req: Request, res: Response) => {
 //Method DELETE
 //Delete a credit
 export const deleteOneCredit = async (req: Request, res: Response) => {
-  const { id } = req.params
+  const { id } = req.params;
   try {
-    const deleteCredit = await CreditModel.findOneAndDelete({_id:id})
-    res.status(200).json({ status: '200ok', msg: "Credit deleted succesfully" })
+    const deleteCredit = await CreditModel.findOneAndDelete({_id:id});
+    res.status(200).json({ status: '200ok', msg: "Credit deleted succesfully" });
+    deleteCredit?.save();
   } catch (error) {
     res.status(400).json({ msg: error });
   }
@@ -114,7 +115,11 @@ export const updateOneCredit = async (req: Request, res: Response) => {
        iCloudLogin,
        iCloudPassword,
        description
-      }
+      },
+      client_deposit,
+      deposit_amount,
+      period,
+      percent
     });
     updatedCredit?.save();
     res.status(201).json({ status: '200 ok', msg: "Credit updates successfully" })
