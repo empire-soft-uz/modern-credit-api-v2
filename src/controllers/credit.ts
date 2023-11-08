@@ -78,9 +78,22 @@ export const deleteOneCredit = async (req: Request, res: Response) => {
 //Method PUT
 //Update a credit
 export const updateOneCredit = async (req: Request, res: Response) => {
-  const { id } = req.params
-  const { product_id,
-    client_id,
+  const { id } = req.params;
+  const { 
+    client:{
+      name,
+      phone,
+      address
+    },
+    product:{
+      product,
+      price,
+      imageUrl,
+      imei,
+       iCloudLogin,
+       iCloudPassword,
+       description
+    },
     client_deposit,
     deposit_amount,
     period,
@@ -88,13 +101,22 @@ export const updateOneCredit = async (req: Request, res: Response) => {
  } = req.body
   try {
     const updatedCredit = await CreditModel.findOneAndUpdate({_id:id}, {
-        product_id,
-        client_id,
-        client_deposit,
-        deposit_amount,
-        period,
-        percent,
-    })
+      client:{
+        name,
+        phone,
+        address
+      },  
+      product:{
+        product,
+      price,
+      imageUrl,
+      imei,
+       iCloudLogin,
+       iCloudPassword,
+       description
+      }
+    });
+    updatedCredit?.save();
     res.status(201).json({ status: '200 ok', msg: "Credit updates successfully" })
   } catch (error) {
     res.status(400).json({ msg: error })
