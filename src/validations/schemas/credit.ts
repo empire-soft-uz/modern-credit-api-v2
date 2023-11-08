@@ -12,10 +12,10 @@ export const createCreditValidationSchema = yup.object({
 });
 
 export const updateCreditValidationSchema = yup.object({
-    product:yup.object().required(),
-    client:yup.object().required(),
-    client_deposit:yup.string().required(),
-    deposit_amount:yup.string().required(),
-    period:yup.number().required(),
-    percent:yup.number().required(),
+    product:yup.object(),
+    client:yup.object(),
+    client_deposit:yup.string(),
+    deposit_amount:yup.string(),
+    period:yup.number(),
+    percent:yup.number(),
 });
