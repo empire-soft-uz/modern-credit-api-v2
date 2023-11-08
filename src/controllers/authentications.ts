@@ -80,10 +80,18 @@ export const loginUser = async (req: Request, res: Response) => {
 // Log Out user
 export const logOut = async (req: Request, res: Response) => {
   try {
+    const {email} = req.body;
+
+    const user:any = await User.findOne({email});
+
+    if (!user){
+      return res.status(400).json({msg:"User does not exist"});
+    }else{
     res.clearCookie('refreshtoken', { path: '/user/refresh_token' })
 
     return res.json({ msg: 'Logged out' })
     //@ts-ignore
+    }
   } catch ({ message }) {
     return res.status(500).json({ message })
   }
