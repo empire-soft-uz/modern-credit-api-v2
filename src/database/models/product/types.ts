@@ -1,7 +1,6 @@
 import {Document,ObjectId} from 'mongoose';
 
 export interface IProduct{
-    _id:ObjectId | string;
     product:string;
     price:number;
     imageUrl?:string;

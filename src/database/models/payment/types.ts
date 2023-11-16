@@ -3,7 +3,7 @@ import { CreditDocument } from '../credit';
 
 export interface IPayment {
     paid_amount:number;
-    due_date:Date;
+    date:Date;
     credit_id:CreditDocument;
 }
 

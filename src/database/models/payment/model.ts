@@ -7,7 +7,7 @@ const paymentSchema = new Schema<Partial<IPayment>>(
             type:Number,
             required:true
         },
-        due_date:{
+        date:{
             type:Date,
             default:Date.now,
             required:true,

@@ -7,7 +7,7 @@ const creditRouter = Router();
 
 creditRouter.get('/credits', Credit.getAllCredits);
 creditRouter.get('/credits/:id',validateIdParam, Credit.getOneCredit);
-creditRouter.post('/credits', validate(createCreditValidationSchema),Credit.addNewCredit);
+creditRouter.post('/credits',validate(createCreditValidationSchema),Credit.addNewCredit); 
 creditRouter.delete('/credits/:id',validateIdParam, Credit.deleteOneCredit);
 creditRouter.put('/credits/:id',validateIdParam, validate(updateCreditValidationSchema), Credit.updateOneCredit);
 

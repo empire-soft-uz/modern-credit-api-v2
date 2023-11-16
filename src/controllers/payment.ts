@@ -19,11 +19,13 @@ export const addNewPayment = async (req: Request, res: Response) => {
   const {
     credit_id,
     paid_amount,
+    date
   } = req.body
   try {
     const newPayment = new PaymentModel({
       credit_id,
-      paid_amount
+      paid_amount,
+      date
     })
     await newPayment.save()
     res.status(201).json({ status: '201 ok', data: newPayment })
@@ -46,10 +48,10 @@ export const deleteOnePayment = async (req: Request, res: Response) => {
 //Update a payment
 export const updateOnePayment = async (req: Request, res: Response) => {
   const { id } = req.params
-  const { paid_amount} = req.body
+  const { credit_id,paid_amount,date} = req.body
   try {
     const updatedPayment = await PaymentModel.findOneAndUpdate({_id:id}, {
-      paid_amount
+      paid_amount,date,credit_id
     })
     res.status(201).json({ status: '200 ok', msg: "Payment updates successfully" })
   } catch (error) {

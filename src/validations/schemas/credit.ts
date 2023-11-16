@@ -7,8 +7,8 @@ export const createCreditValidationSchema = yup.object({
     deposit_amount:yup.string().required(),
     period:yup.number().required(),
     percent:yup.number().required(),
-    // due_date:yup.date().required(),
-    // status:yup.string().required()
+    due_date:yup.date(),
+    status:yup.string(),
 });
 
 export const updateCreditValidationSchema = yup.object({
@@ -18,4 +18,6 @@ export const updateCreditValidationSchema = yup.object({
     deposit_amount:yup.string(),
     period:yup.number(),
     percent:yup.number(),
+    due_date:yup.date(),
+    status:yup.string(),
 });
